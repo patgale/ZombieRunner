@@ -7,7 +7,8 @@ public class SkylineManager : MonoBehaviour
     public int NumberOfObjects;
     public float RecycleOffset;
 
-    public Vector2 Speed;
+    public Vector2 SpeedOffset;
+    private Vector2 speed;
 
     public Vector3 StartPosition;
     private Vector3 nextPosition;
@@ -24,6 +25,7 @@ public class SkylineManager : MonoBehaviour
     void Start()
     {
         tileWidth = (float)Prefab.GetComponent<Renderer>().bounds.size.x;
+        speed = GameManager.GetMainScrollingSpeed();        
 
         objectList = new List<Transform>();
         FillScreen();
@@ -35,11 +37,14 @@ public class SkylineManager : MonoBehaviour
 
     void Update()
     {
-        var removeList = new List<Transform>();
+        var removeList = new List<Transform>();   
+     
+        UIManager.TempText = (speed.x + SpeedOffset.x).ToString();
+        GameEventManager.OnFloorMovement();
 
         foreach (var obj in objectList)
         {
-            obj.Translate(Speed);
+            obj.Translate(speed + SpeedOffset);
 
             if (obj.localPosition.x < RecycleOffset)
             {

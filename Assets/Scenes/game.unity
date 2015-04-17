@@ -133,7 +133,7 @@ MonoBehaviour:
   Prefab: {fileID: 420730, guid: 1bcf8cf81fa1448418ab6e20c33832fc, type: 2}
   NumberOfObjects: 10
   RecycleOffset: -20
-  Speed: {x: -.0149999997, y: 0}
+  SpeedOffset: {x: .0350000001, y: 0}
   StartPosition: {x: -18, y: .200000003, z: 10}
 --- !u!1001 &770000786
 Prefab:
@@ -320,7 +320,7 @@ MonoBehaviour:
   Prefab: {fileID: 474066, guid: 001a214e82e87e44c9336b3ee2e60b4c, type: 2}
   NumberOfObjects: 80
   RecycleOffset: -25
-  Speed: {x: 0, y: 0}
+  SpeedOffset: {x: .0450000018, y: 0}
   StartPosition: {x: -20, y: 0, z: 20}
 --- !u!1 &879837650
 GameObject:
@@ -331,6 +331,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 879837651}
   - 114: {fileID: 879837652}
+  - 114: {fileID: 879837653}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -362,6 +363,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestText: {fileID: 2112005239}
+--- !u!114 &879837653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 879837650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2b81112090b984486e49adef1dbf0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainScrollingSpeed: {x: -.0500000007, y: 0}
 --- !u!1 &1191574323
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +578,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1662338317}
-  - 114: {fileID: 1662338318}
+  - 114: {fileID: 1662338319}
   m_Layer: 0
   m_Name: FloorManager
   m_TagString: Untagged
@@ -585,7 +598,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1191574324}
   m_RootOrder: 0
---- !u!114 &1662338318
+--- !u!114 &1662338319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -593,13 +606,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1662338316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ee1568a14143540bb29fd07e87fd86, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d91da195c930d045a073608ee769ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloorPrefab: {fileID: 433106, guid: e3ad1b025b37207468495b13b1b003c6, type: 2}
+  Prefab: {fileID: 433106, guid: e3ad1b025b37207468495b13b1b003c6, type: 2}
   NumberOfObjects: 7
   RecycleOffset: -30
-  Speed: {x: -.0500000007, y: 0, z: 0}
+  SpeedOffset: {x: 0, y: 0}
   StartPosition: {x: -18, y: -4.0999999, z: 0}
 --- !u!1 &2112005237
 GameObject:
@@ -709,5 +722,5 @@ MonoBehaviour:
   Prefab: {fileID: 447494, guid: ccf3292c2655e6144bc11fd1f17aefcb, type: 2}
   NumberOfObjects: 15
   RecycleOffset: -20
-  Speed: {x: -.0299999993, y: 0}
+  SpeedOffset: {x: .0149999997, y: 0}
   StartPosition: {x: -18, y: -2, z: 5}
