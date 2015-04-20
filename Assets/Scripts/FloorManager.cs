@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SkylineManager : MonoBehaviour
+public class FloorManager : MonoBehaviour
 {
     public Transform Prefab;
     public int NumberOfObjects;
@@ -14,6 +14,10 @@ public class SkylineManager : MonoBehaviour
     private Vector3 nextPosition;
     private float tileWidth;
 
+    public int MinFloorLength, MaxFloorLength;
+    private int setFloorLength, currentFloorLength;
+    public Vector3 MinGap, MaxGap;
+
     private List<Transform> objectList;
 
     void Awake()
@@ -25,7 +29,7 @@ public class SkylineManager : MonoBehaviour
     void Start()
     {
         tileWidth = (float)Prefab.GetComponent<Renderer>().bounds.size.x;
-        speed = GameManager.GetMainScrollingSpeed();        
+        speed = GameManager.GetMainScrollingSpeed();
 
         objectList = new List<Transform>();
         FillScreen();
@@ -37,7 +41,7 @@ public class SkylineManager : MonoBehaviour
 
     void Update()
     {
-        var removeList = new List<Transform>();   
+        var removeList = new List<Transform>();
 
         foreach (var obj in objectList)
         {
@@ -63,6 +67,8 @@ public class SkylineManager : MonoBehaviour
 
     private void FillScreen()
     {
+        setFloorLength = Random.Range(MinFloorLength, MaxFloorLength);
+
         nextPosition = StartPosition;
 
         for (var i = 0; i < NumberOfObjects; i++)
@@ -75,6 +81,19 @@ public class SkylineManager : MonoBehaviour
     void AddObject()
     {
         nextPosition.x = objectList[objectList.Count - 1].localPosition.x + tileWidth;
+        
+        if (currentFloorLength == setFloorLength)
+        {
+            var gap = (int)Random.Range(MinGap.x, MaxGap.x);
+            nextPosition.x += gap;
+
+            setFloorLength = Random.Range(MinFloorLength, MaxFloorLength);
+        }        
+        else
+        {
+            currentFloorLength++;
+        }
+        
         objectList.Add((Transform)Instantiate(Prefab, nextPosition, Quaternion.identity));
     }
 
