@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour
     }
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+    {
+        GameEventManager.GameOver += GameOver;
 	}
 	
 	// Update is called once per frame
@@ -25,5 +26,10 @@ public class GameManager : MonoBehaviour
     public static Vector2 GetMainScrollingSpeed()
     {
         return Gmanager.MainScrollingSpeed;
+    }
+
+    void GameOver()
+    {
+        MainScrollingSpeed = new Vector2(0.0f, 0.0f);
     }
 }

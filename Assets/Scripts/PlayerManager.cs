@@ -4,41 +4,49 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour 
 {
     public float JumpVelocity;
-    private bool isGrounded;
+    public bool isGrounded;
     
     public static float DistanceTraveled;
 
 	void Start () 
 	{
+        GameEventManager.GameOver += GameOver;
         DistanceTraveled = 0.0f;
 	}
+
+    void GameOver()
+    {
+        transform.GetComponent<Animator>().enabled = false;
+        
+        //transform.Rotate(Vector3.back * -90);
+    }
 	
 	void Update () 
 	{
-        //transform.Translate(0.05f, 0.0f, 0.0f);
-
-        if (Input.GetButtonDown("Jump")) // && isGrounded)
-        {
-            transform.Translate(Vector3.up * JumpVelocity * Time.deltaTime, Space.World);
-            //transform.position += transform.up * JumpVelocity * Time.deltaTime;
-            //transform.Translate(0.0f, JumpVelocity, 0.0f); //.GetComponent<Rigidbody2D>().AddForce(JumpVelocity, ForceMode2D.Force);
-            isGrounded = false;
-        }
-
-        DistanceTraveled = (5.0f * Time.deltaTime);
+        DistanceTraveled += Mathf.Abs(((float)(GameManager.GetMainScrollingSpeed().x * 25) * Time.deltaTime));
+        GameEventManager.OnChangeDistance();
 	}
 
     void FixedUpdate()
     {
+        if (Input.GetButton("Jump") && isGrounded)
+        {
+            transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, JumpVelocity));
+            isGrounded = false;
+        }
     }
 
-    void OnCollision2DEnter()
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        isGrounded = true;
+        if (coll.transform.tag == "Ground")
+            isGrounded = true;
+
+        if (coll.transform.tag == "KillZone")
+            GameEventManager.OnGameOver();
     }
 
-    void OnCollision2DExit()
-    {
-        isGrounded = false;
-    }
+    //void OnCollisionExit2D()
+    //{
+    //    isGrounded = false;
+    //}
 }

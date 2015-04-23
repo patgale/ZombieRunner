@@ -102,7 +102,7 @@ GameObject:
   - 61: {fileID: 514796187}
   m_Layer: 0
   m_Name: BelowFloor
-  m_TagString: Untagged
+  m_TagString: KillZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,17 +215,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11491760, guid: 4bd025fbe3c94be43946d59e7ae40d3c, type: 2}
+      propertyPath: GroundCheckTransform
+      value: 
+      objectReference: {fileID: 849782900}
     - target: {fileID: 100000, guid: 4bd025fbe3c94be43946d59e7ae40d3c, type: 2}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5047080, guid: 4bd025fbe3c94be43946d59e7ae40d3c, type: 2}
-      propertyPath: m_SleepingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491760, guid: 4bd025fbe3c94be43946d59e7ae40d3c, type: 2}
-      propertyPath: JumpVelocity
-      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bd025fbe3c94be43946d59e7ae40d3c, type: 2}
@@ -412,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92126707169bfa4d9de86c724c9d57a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestText: {fileID: 2112005239}
+  DistanceText: {fileID: 2112005239}
 --- !u!114 &879837653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +742,7 @@ MonoBehaviour:
   SpeedOffset: {x: 0, y: 0}
   StartPosition: {x: -18, y: -4.80000019, z: 0}
   MinFloorLength: 3
-  MaxFloorLength: 3
+  MaxFloorLength: 8
   MinGap: {x: 0, y: 0, z: 0}
   MaxGap: {x: 5, y: 0, z: 0}
 --- !u!1 &2112005237
@@ -760,7 +756,7 @@ GameObject:
   - 222: {fileID: 2112005240}
   - 114: {fileID: 2112005239}
   m_Layer: 5
-  m_Name: TestText
+  m_Name: DistanceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -82,12 +82,16 @@ public class FloorManager : MonoBehaviour
     {
         nextPosition.x = objectList[objectList.Count - 1].localPosition.x + tileWidth;
         
-        if (currentFloorLength == setFloorLength)
+        if (currentFloorLength >= setFloorLength)
         {
             var gap = (int)Random.Range(MinGap.x, MaxGap.x);
             nextPosition.x += gap;
 
             setFloorLength = Random.Range(MinFloorLength, MaxFloorLength);
+            currentFloorLength = 1;
+
+            UIManager.TempText = setFloorLength.ToString();
+            GameEventManager.OnFloorMovement();
         }        
         else
         {

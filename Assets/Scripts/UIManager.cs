@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour 
 {
-    public Text TestText;
+    public Text DistanceText;
     public static string TempText;
 
 	// Use this for initialization
 	void Start () 
     {
-        GameEventManager.FloorMovement += FloorMovement;    
+        GameEventManager.FloorMovement += FloorMovement;
+        GameEventManager.ChangeDistance += ChangeDistance;
 	}
 	
 	// Update is called once per frame
@@ -18,8 +19,13 @@ public class UIManager : MonoBehaviour
 	
 	}
 
+    private void ChangeDistance()
+    {
+        DistanceText.text = string.Format("Distance: {0}m", PlayerManager.DistanceTraveled.ToString("f0"));
+    }
+
     private void FloorMovement()
     {
-        TestText.text = TempText;
+        
     }
 }
